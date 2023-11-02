@@ -74,7 +74,7 @@ class BinarySearchTree {
     if (currentNode) {
       console.log(currentNode.val);
       this.preOrderTraversal(currentNode.left);
-      this.preOrderTraversal(currentNode.right);
+      // this.preOrderTraversal(currentNode.right);
     }
   }
 
@@ -82,9 +82,9 @@ class BinarySearchTree {
   inOrderTraversal(currentNode = this.root) {
     // Your code here
     if (currentNode) {
-      this.inOrderTraversal(currentNode.left);
+      // this.inOrderTraversal(currentNode.left);
       console.log(currentNode.val);
-      this.inOrderTraversal(currentNode.right)
+      // this.inOrderTraversal(currentNode.right)
     }
   }
 
