@@ -1,3 +1,5 @@
+const { Queue } = require('./abstract-data-structures/queue.js');
+
 // Do not change this
 class TreeNode {
   constructor(val) {
@@ -21,17 +23,7 @@ class BinarySearchTree {
       this.root = node;
     } else {
       let current = this.root;
-      // if (node.val < this.root.val) {
-      //   // this.root.left = node;
-      //   while (current.val ){}
-      // } else {
-      //   if (node.val > this.root.val) {
-      //     this.root.right = node;
-      //   }
-      // }
-
       while (current) {
-        // console.log(current, 'current', node.val < current.val);
         if (node.val < current.val) {
           if (current.left) {
             current = current.left;
@@ -48,8 +40,6 @@ class BinarySearchTree {
           }
         }
       }
-
-      // console.log('current AFTER', current)
     }
   }
 
@@ -74,7 +64,7 @@ class BinarySearchTree {
     if (currentNode) {
       console.log(currentNode.val);
       this.preOrderTraversal(currentNode.left);
-      // this.preOrderTraversal(currentNode.right);
+      this.preOrderTraversal(currentNode.right);
     }
   }
 
@@ -82,9 +72,9 @@ class BinarySearchTree {
   inOrderTraversal(currentNode = this.root) {
     // Your code here
     if (currentNode) {
-      // this.inOrderTraversal(currentNode.left);
+      this.inOrderTraversal(currentNode.left);
       console.log(currentNode.val);
-      // this.inOrderTraversal(currentNode.right)
+      this.inOrderTraversal(currentNode.right)
     }
   }
 
@@ -98,14 +88,35 @@ class BinarySearchTree {
     }
   }
 
-  // Breadth First Traversal - Iterative
+  // // Breadth First Traversal - Iterative
   breadthFirstTraversal() {
-    // your code here
+    // Your code here
+    const queue = new Queue();
+    queue.enqueue(this.root);
+
+    while (queue.length > 0) {
+      let node = queue.dequeue();
+      console.log(node.val);
+
+      if (node.left) queue.enqueue(node.left);
+      if (node.right) queue.enqueue(node.right)
+    }
   }
+
 
   // Depth First Traversal - Iterative
   depthFirstTraversal() {
     // your code here
+    const stack = [];
+    stack.push(this.root);
+
+    while (stack.length > 0) {
+      const node = stack.pop();
+      console.log(node.val);
+
+      if (node.left) stack.push(node.left);
+      if (node.right) stack.push(node.right);
+    }
   }
 }
 
